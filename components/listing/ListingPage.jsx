@@ -3,7 +3,6 @@ import ListingCard from './ListingCard'
 
 export default async function ListingPage() {
   const data = await GetListing()
-  console.log(data)
   return (
     <div id='listing'>
       <div className='flex justify-between items-center text-center'>
@@ -17,12 +16,9 @@ export default async function ListingPage() {
       </div>
       <div className='flex flex-wrap justify-center md:justify-between gap-10 py-16'>
         {data?.map((item)=> (
-          <ListingCard key={item.id} title={item.title} location={item.location} price={item.price} image={item.images[0]}/>
+          <ListingCard key={item.id} id={item.id} title={item.title} location={item.location} price={item.price} image={item.images[0]}/>
         ))}
-        <ListingCard/>
-        <ListingCard/>
-        <ListingCard/>
-        <ListingCard/>
+        
       </div>
     </div>
   )

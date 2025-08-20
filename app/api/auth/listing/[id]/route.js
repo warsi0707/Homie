@@ -59,19 +59,23 @@ export async function  PUT(req,{params}) {
 }
 export async function DELETE(req, {params}) {
     const { id } = await params;
-    try {
+    console.log(id)
+    const {ownerId} = await req.json()
+    console.log(ownerId)
+    // try {
         const listing = await prisma.property.delete({
             where: {
-                id: id
+                id: id,
+                ownerId: ownerId
             }
         })
         return NextResponse.json({
             message: "Listing Deleted"
         })
-    } catch (error) {
-        return NextResponse.json({
-            error: error
-        })
-    }
+    // } catch (error) {
+    //     return NextResponse.json({
+    //         error: error
+    //     })
+    // }
 
 }

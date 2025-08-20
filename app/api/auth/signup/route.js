@@ -28,7 +28,8 @@ export async function POST(req) {
                 email,
                 name,
                 password: hashPassword,
-                phone
+                phone,
+                role: 'ADMIN'
             }
         })
         return NextResponse.json({

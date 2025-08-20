@@ -7,11 +7,10 @@ import { MdArrowOutward } from "react-icons/md";
 
 
  function ListingCard({title, location, price, id,image}) {
-    console.log(image)
   return (
     <div className=' w-[400px] min-h-full relative'>
-        <Link href={"#"}>
-         <img src="/homeImage.png" className='h-[450px] w-full ' alt="" />
+        <Link href={`/listing/${id}`}>
+         <img src={`${image}`} className='h-[450px] w-full ' alt="" />
         </Link>
         <h1 className="absolute top-4 right-5 text-5xl font-thin text-gray-300 "><MdArrowOutward/></h1>
         <div className="flex justify-between py-3">
