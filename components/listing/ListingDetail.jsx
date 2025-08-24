@@ -1,61 +1,81 @@
-'use client'
+"use client";
+import { StateContext } from "@/context/StateContextProvider";
 import axios from "axios";
-import { useParams } from "next/navigation";
-import React, { memo, useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import React, { memo, useCallback, useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import GoogleMap from "../GoogleMap";
+import Link from "next/link";
 
 function ListingDetail() {
-  const {id} = useParams()
-  const [data,setData] = useState({})
-  const [image, setImage] = useState([])
-  console.log(data)
+  const { loading, setLoading } = useContext(StateContext);
+  const [data, setData] = useState({});
+  const [image, setImage] = useState([]);
+  const { id } = useParams();
+  const router = useRouter()
 
-  const GetListing =async()=>{
-    try{
-      const response = await axios.get(`/api/auth/listing/${id}`)
-      console.log(response)
-      if(response.statusText === 'OK'){
-        setData(response.data)
-        setImage(response.data.images)
+  const GetListing =useCallback( async () => {
+    try {
+      const response = await axios.get(`/api/auth/listing/${id}`);
+      console.log(response);
+      if (response.statusText === "OK") {
+        setLoading(false);
+        setData(response.data.listing);
+        setImage(response.data.listing.images);
       }
-    }catch(error){
-      toast.error(error)
+    } catch (error) {
+      setLoading(false);
+      toast.error(error);
     }
+  },[])
+
+  useEffect(() => {
+    setLoading(true)
+    if (id) {
+      GetListing();
+    } else {
+      return;
+    }
+  }, [id]);
+  if (loading == true) {
+    return (
+      <div>
+        <h1 className="text-5xl font-bold text-center min-h-screen mt-20">Loading...</h1>
+      </div>
+    );
   }
-  useEffect(()=>{
-    if(id){
-      GetListing()
-    }else{
-      return
-    }
-    
-  },[id])
   return (
     <div className="p-8 md:p-14 md:px-32 flex flex-col gap-5 min-h-screen mb-10">
-      <div className="-mt-8">
-        <h1 className="text-4xl font-semibold">{data.title}</h1>
-        <p className="text-gray-400">{data.location}</p>
+      <div className="-mt-8 flex justify-between">
+       <div>
+          <h1 className="text-4xl font-semibold">{data.title}</h1>
+          <p className="text-gray-400">{data.location}</p>
+       </div>
+       <div className="text-center items-center">
+         <Link href={`/listing/update/${data.id}`} className="bg-black text-white p-2 rounded-2xl cursor-pointer hover:bg-slate-700 transition-all duration-300">Make Changes</Link>
+       </div>
+      
       </div>
       <div className="flex flex-col h-96 gap-5 md:min-h-screen md:-mb-44">
         <div className="image h-96 md:h-[500px] flex flex-col w-full  md:grid grid-cols-5 gap-10 md:gap-5">
           <div className="h-full w-full col-span-4 ">
             <img
-            // {...image? src={`${image[0]}`}: src={'/mumbai.png'}}
-              src={`${image? image[0]: '/mumbai.png' }`}
+              // {...image? src={`${image[0]}`}: src={'/mumbai.png'}}
+              src={`${image ? image[0] : "/mumbai.png"}`}
               className="w-full h-96 md:h-[520px] rounded-xl object-fill"
               alt=""
             />
           </div>
           <div className="md:h-full h-52 w-full hidden  col-span-1 md:flex flex-row  md:flex-col gap-5 ">
-            {image.slice(1).map((item, indx) => (
+            {image?.slice(1).map((item, indx) => (
               <img
-              key={indx}
-              className="h-40 w-full rounded-xl object-fill"
-              src={`${item}`}
-              alt=""
-            />
+                key={indx}
+                className="h-40 w-full rounded-xl object-fill"
+                src={`${item}`}
+                alt=""
+              />
             ))}
-            
+
             {/* <img className="h-40 w-full rounded-xl" src="/mumbai.png" alt="" />
             <img className="h-40 w-full rounded-xl" src="/mumbai.png" alt="" /> */}
           </div>
@@ -72,48 +92,52 @@ function ListingDetail() {
           <div className="space-y-5 border-b border-gray-300 pb-5">
             <h1 className="text-3xl">Hosted</h1>
             <div className="flex justify-between items-center">
-                <div className="flex gap-2 items-center">
-              <div>
-                <img
-                  src="/lucknow.png"
-                  className="h-10 w-10 rounded-full"
-                  alt=""
-                />
-              </div>
-              <div>
-                <h1 className="text-xl">{data?.owner?.name}</h1>
-                <p>{data?.owner?.phone}</p>
-              </div>
+              <div className="flex gap-2 items-center">
+                <div>
+                  <img
+                    src="/lucknow.png"
+                    className="h-10 w-10 rounded-full"
+                    alt=""
+                  />
                 </div>
-                <button className="border border-gray-400 px-7 py-2 rounded-full cursor-pointer hover:bg-black hover:text-white transition-all duration-300">Contact</button>
+                <div>
+                  <h1 className="text-xl">{data?.owner?.name}</h1>
+                  <p>{data?.owner?.phone}</p>
+                </div>
+              </div>
+              <Link href={`/contact/${data?.id}`}  className="border border-gray-400 px-7 py-2 rounded-full cursor-pointer hover:bg-black hover:text-white transition-all duration-300">
+                Contact
+              </Link>
             </div>
-            
           </div>
           {/* Immenties */}
           <div className="space-y-5 border-b border-gray-300 pb-5">
             <h1 className="text-3xl">Facility</h1>
             <div className="grid grid-cols-2 gap-5">
-            {data?.amenities?.map((item, index)=> (
-              <h1 key={index}>{item}</h1>
-            ))}
-              
+              {data?.amenities?.map((item, index) => (
+                <h1 key={index}>{item}</h1>
+              ))}
             </div>
           </div>
         </div>
         <div className="bg-green-400 w-full h-full col-span-2 rounded-md">
-            <h1>Bookings</h1>
+          <h1>Bookings</h1>
         </div>
       </div>
       {/* Location */}
-      <div className=" w-full h-96 md:h-[500px] mb-5 space-y-2">
+      {/* <div className=" w-full h-96 md:h-[500px] mb-5 space-y-2">
+
         <div className="">
           <h1 className="text-3xl font-semibold">Location</h1>
           <p className="text-gray-500">Mumbai</p>
         </div>
         <div className="bg-black w-full h-52 md:h-full rounded-xl"></div>
-      </div>
+      </div> */}
+      <GoogleMap />
     </div>
   );
 }
 
-export default memo(ListingDetail) ;
+export default memo(ListingDetail);
+
+// AIzaSyAluLDtPEXOzHy2-ctlRGbHWPIp-Kmrn6g

@@ -19,63 +19,13 @@ export async function GET(req, {params}){
                 }
             }
         })
-        return NextResponse.json(listing)
-    } catch (error) {
         return NextResponse.json({
-            error: error
-        })
-    }
-
-}
-export async function  PUT(req,{params}) {
-    const { id } = await params;
-    const { title, description, location, area, price, images, ownerId } = await req.json()
-    try {
-        const listing = await prisma.property.update({
-            where: {
-                id: id
-            },
-            data: {
-                title,
-                description,
-                location,
-                area,
-                price,
-                images: {
-                    set: images
-                },
-                ownerId: ownerId
-            }
-        })
-        return NextResponse.json({
-            message: "Listing Updated"
+            listing: listing
         })
     } catch (error) {
         return NextResponse.json({
             error: error
         })
     }
-
-}
-export async function DELETE(req, {params}) {
-    const { id } = await params;
-    console.log(id)
-    const {ownerId} = await req.json()
-    console.log(ownerId)
-    // try {
-        const listing = await prisma.property.delete({
-            where: {
-                id: id,
-                ownerId: ownerId
-            }
-        })
-        return NextResponse.json({
-            message: "Listing Deleted"
-        })
-    // } catch (error) {
-    //     return NextResponse.json({
-    //         error: error
-    //     })
-    // }
 
 }

@@ -25,6 +25,7 @@ const handler = NextAuth({
             return null
           }
           const comparePassword = await bcrypt.compare(credentials.password, user.password)
+          console.log("comparePassword: ", JSON.stringify(comparePassword))
           console.log("cpm pass: ", comparePassword)
           if (!comparePassword) {
             return null

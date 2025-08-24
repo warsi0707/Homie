@@ -26,35 +26,36 @@ export default function Navbar() {
         <Link href={"#service"}> Services</Link>
         <Link href={"#location"}> Location</Link>
       </div>
-       {session?.status === 'authenticated' && 
-       <div className="flex gap-2">
-         <NavLogLink title={'Post Listing'}/>
-       <motion.button
-       onClick={()=>signOut()}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          className="hidden md:flex cursor-pointer border px-4 py-1.5 hover:bg-black hover:text-white "
-        >
-          Logout
-        </motion.button>
-       
-       </div>
-       } 
-       {session?.status === 'unauthenticated' &&
-      <Link href={"/signin"} className="text-xl">
-       
-        <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          className="hidden md:flex cursor-pointer border px-4 py-1.5 hover:bg-black hover:text-white "
-        >
-          Sign In
-        </motion.button>
-        <button className="flex md:hidden cursor-pointer">
-          <FaBars />
-        </button>
-      </Link>
-      }
+
+      <div className="flex gap-2">
+        {session?.data?.user?.role === 'AGENT' &&
+        <NavLogLink title={"Post Listing"} links={"/listing"} />}
+        {session?.status === "authenticated" && (
+          <motion.button
+            onClick={() => signOut()}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="hidden md:flex cursor-pointer border px-4 py-1.5 hover:bg-black hover:text-white "
+          >
+            Logout
+          </motion.button>
+        )}
+      </div>
+
+      {session?.status === "unauthenticated" && (
+        <Link href={"/signin"} className="text-xl">
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="hidden md:flex cursor-pointer border px-4 py-1.5 hover:bg-black hover:text-white "
+          >
+            Sign In
+          </motion.button>
+          <button className="flex md:hidden cursor-pointer">
+            <FaBars />
+          </button>
+        </Link>
+      )}
     </div>
   );
 }

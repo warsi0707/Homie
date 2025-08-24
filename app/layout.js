@@ -4,6 +4,8 @@ import Navbar from "@/components/navbars/Navbar";
 import FooterPage from "@/components/footer/FooterPage";
 import ToastProvider from "@/lib/ToastProvider";
 import SessionAuthProvider from "@/lib/SessionAuthProvider";
+import StateContextProvider from "@/context/StateContextProvider";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,12 +28,14 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-       <SessionAuthProvider>
-        <Navbar/>
-         <ToastProvider/>
-        {children}
-        <FooterPage/>
-        </SessionAuthProvider>
+        <StateContextProvider>
+          <SessionAuthProvider>
+            <Navbar />
+            <ToastProvider />
+            {children}
+            <FooterPage />
+          </SessionAuthProvider>
+        </StateContextProvider>
       </body>
     </html>
   );

@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt'
 
 
 export async function POST(req) {
-    const { email, name, password, phone } = await req.json()
+    const { email, name, password, phone, roles } = await req.json()
     console.log(email, name, password, phone )
     try {
         if(!email || !name || !password || !phone){
@@ -23,18 +23,31 @@ export async function POST(req) {
             })
         }
         const hashPassword = await bcrypt.hash(password, 10)
+        if(process.env.ADMIN_SECRET === password.toUpperCase()){
+            await prisma.user.create({
+                data : {
+                    email,
+                    name,
+                    password: hashPassword,
+                    phone,
+                    role: 'ADMIN'
+                }
+            })
+        }else{
+        const role = roles.toUpperCase() || 'USER'
         const NewUser = await prisma.user.create({
             data : {
                 email,
                 name,
                 password: hashPassword,
                 phone,
-                role: 'ADMIN'
+                role: role
             }
         })
         return NextResponse.json({
             message: 'Signup Success'
         })
+    }
     } catch (error) {
         return NextResponse.json({
             error: error

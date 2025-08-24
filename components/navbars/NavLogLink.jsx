@@ -3,7 +3,7 @@ import * as motion from "motion/react-client";
 
 function NavLogLink({links, title}) {
   return (
-    <Link href={"/signin"} >
+    <Link href={links} >
        
         <motion.button
           whileHover={{ scale: 1.1 }}

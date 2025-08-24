@@ -12,7 +12,9 @@ export default function SignUpPage() {
   const nameRef = useRef("")
   const passwordRef = useRef("")
   const phoneRef = useRef("")
+  const roleRef = useRef("")
   const router = useRouter()
+
 
   const HandleSignup =async(e)=> {
     e.preventDefault()
@@ -20,8 +22,9 @@ export default function SignUpPage() {
     const name = nameRef.current.value;
     const password = passwordRef.current.value;
     const phone = phoneRef.current.value;
+    const roles = roleRef.current.value;
     try{
-      const response = await axios.post('/api/auth/signup', {email, name, password, phone})
+      const response = await axios.post('/api/auth/signup', {email, name, password, phone, roles})
       if(response.data.message){
         toast.success(response.data.message)
         router.push("/signin")
@@ -47,6 +50,11 @@ export default function SignUpPage() {
             <SignInput refs={emailRef} label={"Email"} placeholder={"john@gamil.com"} type={'Email'}/>
             <SignInput refs={passwordRef} label={"Password"} placeholder={"john@123"} type={'Password'}/>
            <SignInput refs={phoneRef} label={"Phone"} placeholder={"+91 12456789"} type={'number'}/>
+           <select ref={roleRef} className='border text-black w-full  p-2 rounded-lg'>
+             <option value="">Please select role</option>
+            <option value="USER">USER</option>
+            <option value="AGENT">AGENT</option>
+           </select>
           </div>
           <div>
             <SignButton onclick={HandleSignup} title={"SignUp"}/>
