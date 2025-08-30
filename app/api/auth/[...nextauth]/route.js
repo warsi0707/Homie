@@ -13,20 +13,17 @@ const handler = NextAuth({
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials, req) {
-        console.log("credentials: ", credentials.email, credentials.password)
+
         try {
           const user = await prisma.user.findFirst({
             where: {
               email: credentials.email
             }
           })
-          console.log(user)
           if (!user) {
             return null
           }
           const comparePassword = await bcrypt.compare(credentials.password, user.password)
-          console.log("comparePassword: ", JSON.stringify(comparePassword))
-          console.log("cpm pass: ", comparePassword)
           if (!comparePassword) {
             return null
           }

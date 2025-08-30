@@ -1,14 +1,13 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
-import ContactCard from "../ContactCard";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { StateContext } from "@/context/StateContextProvider";
 import toast from "react-hot-toast";
+import ContactCard from "../ContactCard";
 
 export default function InquiryPage() {
   const session = useSession();
-  console.log(session);
   const [contacts, setContacts] = useState([]);
   const { loading, setLoading } = useContext(StateContext);
   const agentId = session?.data?.user?.id
@@ -20,7 +19,6 @@ export default function InquiryPage() {
           agentId: agentId
         },
       });
-      console.log(response.data.inquiries.map((item)=> item))
       setLoading(true);
       if (response.statusText == 'OK') {
         setLoading(false)

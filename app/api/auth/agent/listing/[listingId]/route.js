@@ -6,7 +6,6 @@ import { NextResponse } from "next/server"
 export async function PUT(req, { params }) {
     const { listingId } = await params;
     const { title, description, location, area, price, images, amenities, agentId } = await req.json()
-    console.log(title, description, location, area, price, images, amenities, agentId)
     try {
         const listing = await prisma.property.update({
             where: {
@@ -36,7 +35,6 @@ export async function PUT(req, { params }) {
 export async function DELETE(req, { params }) {
     const { agentId } = await req.json()
     const { listingId } = await params;
-    console.log(agentId)
 
     try {
         const listing = await prisma.property.findFirst({

@@ -3,11 +3,10 @@ import { NextResponse } from "next/server"
 
 export async function POST(req) {
     const { message, email, phone, name, propertyId,agentId} = await req.json()
-    console.log("data :",message, email, phone, name, propertyId)
     
     if(!message || !email || !phone || !name || !propertyId || !agentId) {
         return NextResponse.json({
-            error: "All fields are required"
+            error: "All fields are required or please login"
         })
     }
 

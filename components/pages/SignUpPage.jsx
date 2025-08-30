@@ -1,11 +1,11 @@
 'use client'
 import React, { useRef } from 'react'
-import SignInput from './SignInput'
-import SignButton from './SignButton'
 import Link from 'next/link'
 import toast from 'react-hot-toast'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
+import SignInput from '../signin/SignInput'
+import SignButton from '../signin/SignButton'
 
 export default function SignUpPage() {
   const emailRef = useRef("")
@@ -32,7 +32,6 @@ export default function SignUpPage() {
       if(response.data.error){
         toast.error(response.data.error)
       }
-      console.log(response)
     }catch(error){
       toast.error(error)
     }

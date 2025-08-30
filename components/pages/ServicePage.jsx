@@ -1,7 +1,5 @@
-import Link from 'next/link'
 import React from 'react'
-import ServiceCard from './ServiceCard'
-import LocationPage from '../location/LocationPage'
+import ServiceCard from '../services/ServiceCard'
 
 export default function ServicePage() {
   return (

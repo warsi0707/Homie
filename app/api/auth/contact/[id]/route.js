@@ -25,7 +25,6 @@ export async function  DELETE(req,{params}) {
                 id: id
             }
         })
-        console.log(contact)
         return NextResponse.json({
             message: "Contact Deleted"
         })

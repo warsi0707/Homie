@@ -1,4 +1,5 @@
-import ListingDetail from '@/components/listing/ListingDetail'
+
+import ListingDetail from '@/components/pages/ListingDetail'
 import React from 'react'
 
 export default function page() {

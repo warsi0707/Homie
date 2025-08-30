@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { memo, useEffect, useState } from "react";
+import { memo } from "react";
 import { CiTrash } from "react-icons/ci";
 
 function ContactCard({item, onDelete}) {

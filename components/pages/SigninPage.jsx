@@ -1,10 +1,10 @@
 'use client'
 import Link from "next/link";
 import React, { useRef } from "react";
-import SignInput from "./SignInput";
-import SignButton from "./SignButton";
 import toast from "react-hot-toast";
 import { signIn } from "next-auth/react"
+import SignInput from "../signin/SignInput";
+import SignButton from "../signin/SignButton";
 
 export default function SigninPage() {
   const emailRef = useRef("")
@@ -29,7 +29,6 @@ export default function SigninPage() {
       }else{
         toast.success("Welcome to Homie")
       }
-      console.log(response)
     }catch(error){
       toast.error(error)
     }

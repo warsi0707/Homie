@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useState } from "react";
 import LisitngButton from "./LisitngButton";
 import { useSession } from "next-auth/react";
 import axios from "axios";
@@ -16,7 +16,6 @@ export default function PostListing() {
   const [area, setArea] = useState("");
   const [images, setImages] = useState([]);
   const [amenities, setAmenities] = useState([]);
-  console.log(amenities);
 
   const [imageInput, setImageInput] = useState("");
   const [amenityInput, setAmenityInput] = useState("");

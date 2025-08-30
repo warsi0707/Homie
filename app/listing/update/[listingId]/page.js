@@ -1,4 +1,4 @@
-import UpdateListingPage from '@/components/listing/UpdateListingPage';
+import UpdateListingPage from '@/components/pages/UpdateListingPage';
 
 
 export default function page() {

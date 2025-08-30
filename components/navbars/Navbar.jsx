@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React, { useCallback } from "react";
+import React from "react";
 import { HiOutlineHomeModern } from "react-icons/hi2";
 import { FaBars } from "react-icons/fa6";
 import * as motion from "motion/react-client";
@@ -9,6 +9,7 @@ import NavLogLink from "./NavLogLink";
 
 export default function Navbar() {
   const session = useSession();
+  console.log(session)
   return (
     <div className="border-b p-7 px-10 border-gray-300 flex justify-between items-center">
       <Link
@@ -30,8 +31,9 @@ export default function Navbar() {
         <div className="flex gap-2">
           <NavLogLink title={"Post Listing"} links={"/listing"} />
           <NavLogLink title={"Inquery"} links={"/contact"} />
-
-          {session?.status === "authenticated" && (
+        </div>
+      )}
+      {session?.status === "authenticated" && (
             <motion.button
               onClick={() => signOut()}
               whileHover={{ scale: 1.1 }}
@@ -41,8 +43,6 @@ export default function Navbar() {
               Logout
             </motion.button>
           )}
-        </div>
-      )}
 
       {session?.status === "unauthenticated" && (
         <Link href={"/signin"} className="text-xl">

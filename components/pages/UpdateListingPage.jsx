@@ -1,23 +1,19 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import LisitngButton from "./LisitngButton";
+import LisitngButton from "../listing/LisitngButton";
 import { useContext, useEffect, useState } from "react";
-import GetListing from "@/lib/GetListing";
 import toast from "react-hot-toast";
 import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
 import { StateContext } from "@/context/StateContextProvider";
-import ListingInput from "./ListingInput";
+import ListingInput from "../listing/ListingInput";
 
 export default function UpdateListingPage() {
   const session = useSession();
   const { listingId } = useParams();
-  console.log("listingid: ", listingId);
   const { loading, setLoading } = useContext(StateContext);
-  const [listingData, setListingData] = useState({});
 
-  console.log(listingId);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
@@ -45,7 +41,6 @@ export default function UpdateListingPage() {
         setImageInput(response.data.listing.images);
         setAmenityInput(response.data.listing.amenities);
       }
-      console.log(response);
     } catch (error) {
       toast.error(error);
     }
@@ -73,14 +68,13 @@ export default function UpdateListingPage() {
         amenities,
         agentId,
       });
-      console.log(response);
+
       if (response.data.error) {
         toast.error(response.data.error);
       } else {
         toast.success(response.data.message);
         router.push("/");
       }
-      console.log(response);
     } catch (error) {
       toast.error(error);
     }

@@ -2,28 +2,30 @@
 import { StateContext } from "@/context/StateContextProvider";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
-import React, { memo, useCallback, useContext, useEffect, useState } from "react";
+import React, {
+  memo,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import toast from "react-hot-toast";
 import GoogleMap from "../GoogleMap";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 
 function ListingDetail() {
-  const session = useSession()
+  const session = useSession();
   const { loading, setLoading } = useContext(StateContext);
   const [data, setData] = useState({});
   const [image, setImage] = useState([]);
   const { id } = useParams();
-  const router = useRouter()
-  const agentId = session?.data?.user?.id
-  console.log("agentId :",agentId)
+  const router = useRouter();
+  const agentId = session?.data?.user?.id;
 
-
-
-  const GetListing =useCallback( async () => {
+  const GetListing = useCallback(async () => {
     try {
       const response = await axios.get(`/api/auth/listing/${id}`);
-      console.log(response);
       if (response.statusText === "OK") {
         setLoading(false);
         setData(response.data.listing);
@@ -33,27 +35,30 @@ function ListingDetail() {
       setLoading(false);
       toast.error(error);
     }
-  },[])
-  const DeleteListing =async()=>{
-    const listingId = id
-    
-    try{
-      const response = await axios.delete(`/api/auth/agent/listing/${listingId}`,{
-        data: {agentId}
-      })
-      if(response.data.message){
-        toast.success(response.data.message)
-        router.push("/")
-      }else{
-        toast.error(response.data.error)
+  }, []);
+  const DeleteListing = async () => {
+    const listingId = id;
+
+    try {
+      const response = await axios.delete(
+        `/api/auth/agent/listing/${listingId}`,
+        {
+          data: { agentId },
+        }
+      );
+      if (response.data.message) {
+        toast.success(response.data.message);
+        router.push("/");
+      } else {
+        toast.error(response.data.error);
       }
-    }catch(error){
-      toast.error(error)
+    } catch (error) {
+      toast.error(error);
     }
-  }
+  };
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     if (id) {
       GetListing();
     } else {
@@ -63,25 +68,35 @@ function ListingDetail() {
   if (loading == true) {
     return (
       <div>
-        <h1 className="text-5xl font-bold text-center min-h-screen mt-20">Loading...</h1>
+        <h1 className="text-5xl font-bold text-center min-h-screen mt-20">
+          Loading...
+        </h1>
       </div>
     );
   }
   return (
     <div className="p-8 md:p-14 md:px-32 flex flex-col gap-5 min-h-screen mb-10">
       <div className="-mt-8 flex justify-between">
-       <div>
+        <div>
           <h1 className="text-4xl font-semibold">{data.title}</h1>
           <p className="text-gray-400">{data.location}</p>
-       </div>
-       {session?.data?.user?.role === 'AGENT' &&
-       <div className="text-center items-center space-x-2">
-         <Link href={`/listing/update/${data.id}`} className="bg-black text-white p-2 rounded-2xl cursor-pointer hover:bg-slate-700 transition-all duration-300">Make Changes</Link>
-           <button onClick={DeleteListing} className="bg-red-600 text-white py-1.5 px-5 rounded-2xl cursor-pointer hover:bg-red-700 transition-all duration-300">Delete</button>
-       </div>}
-
-       
-      
+        </div>
+        {session?.data?.user?.role === "AGENT" && (
+          <div className="text-center items-center space-x-2">
+            <Link
+              href={`/listing/update/${data.id}`}
+              className="bg-black text-white p-2 rounded-2xl cursor-pointer hover:bg-slate-700 transition-all duration-300"
+            >
+              Make Changes
+            </Link>
+            <button
+              onClick={DeleteListing}
+              className="bg-red-600 text-white py-1.5 px-5 rounded-2xl cursor-pointer hover:bg-red-700 transition-all duration-300"
+            >
+              Delete
+            </button>
+          </div>
+        )}
       </div>
       <div className="flex flex-col h-96 gap-5 md:min-h-screen md:-mb-44">
         <div className="image h-96 md:h-[500px] flex flex-col w-full  md:grid grid-cols-5 gap-10 md:gap-5">
@@ -132,7 +147,10 @@ function ListingDetail() {
                   <p>{data?.owner?.phone}</p>
                 </div>
               </div>
-              <Link href={`/contact/${data?.id}`}  className="border border-gray-400 px-7 py-2 rounded-full cursor-pointer hover:bg-black hover:text-white transition-all duration-300">
+              <Link
+                href={`/contact/${data?.id}`}
+                className="border border-gray-400 px-7 py-2 rounded-full cursor-pointer hover:bg-black hover:text-white transition-all duration-300"
+              >
                 Contact
               </Link>
             </div>
@@ -147,9 +165,11 @@ function ListingDetail() {
             </div>
           </div>
         </div>
-        <div className="bg-green-400 w-full h-full col-span-2 rounded-md">
+        {/* <-- BOOKING SESCTION --> */}
+        
+        {/* <div className="bg-green-400 w-full h-full col-span-2 rounded-md">
           <h1>Bookings</h1>
-        </div>
+        </div> */}
       </div>
       {/* Location */}
       {/* <div className=" w-full h-96 md:h-[500px] mb-5 space-y-2">

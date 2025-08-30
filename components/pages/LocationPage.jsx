@@ -1,5 +1,5 @@
 import React from 'react'
-import LocationCard from './LocationCard'
+import LocationCard from '../location/LocationCard'
 
 function LocationPage() {
   return (

@@ -1,5 +1,7 @@
 import GetListing from '@/lib/GetListing'
-import ListingCard from './ListingCard'
+import ListingCard from '../listing/ListingCard'
+import * as motion from "motion/react-client";
+
 
 export default async function ListingPage() {
   const data = await GetListing()
@@ -14,12 +16,16 @@ export default async function ListingPage() {
             <button className='bg-black text-white p-3 px-8 text-xl hidden sm:flex'>All</button>
         </div>
       </div>
-      <div className='flex flex-wrap justify-center md:justify-between gap-10 py-16'>
+      <motion.div
+      initial={{opacity:0, y:100}}
+      whileInView={{opacity:1, y:0}}
+      transition={{duration:0.8}}
+      className='flex flex-wrap justify-center md:justify-between gap-10 py-16'>
         {data?.map((item)=> (
           <ListingCard key={item.id} id={item.id} title={item.title} location={item.location} price={item.price} image={item.images[0]}/>
         ))}
         
-      </div>
+      </motion.div>
     </div>
   )
 }
