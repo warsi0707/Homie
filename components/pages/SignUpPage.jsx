@@ -6,6 +6,7 @@ import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import SignInput from '../signin/SignInput'
 import SignButton from '../signin/SignButton'
+import { signIn } from 'next-auth/react'
 
 export default function SignUpPage() {
   const emailRef = useRef("")
@@ -36,6 +37,10 @@ export default function SignUpPage() {
       toast.error(error)
     }
   }
+  const handleGoogleSignup =()=>{
+     signIn('google')
+
+  }
   return (
      <div className="min-h-screen w-full flex justify-between gap-10 p-20 ">
       <div className=" w-full flex flex-col justify-center items-center h-screen pb-10">
@@ -55,8 +60,10 @@ export default function SignUpPage() {
             <option value="AGENT">AGENT</option>
            </select>
           </div>
-          <div>
+          <div className='flex justify-between'>
             <SignButton onclick={HandleSignup} title={"SignUp"}/>
+            <SignButton onclick={()=> handleGoogleSignup()} title={"Google"}/>
+            <SignButton  title={"GitHub"}/>
           </div>
           <div>
             <p>Already have an account ?<Link href={"/signin"} className="underline">SignIn</Link></p>
