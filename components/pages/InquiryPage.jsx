@@ -64,7 +64,7 @@ export default function InquiryPage() {
     )
   }else{
   return (
-    <div className="min-h-screen w-full sm:px-20 mx-auto gap-5 py-5 flex flex-wrap justify-center md:justify-between items-center">
+    <div className="min-h-screen sm:w-[700px]  p-2  mx-auto sm:gap-5 sm:py-5 flex flex-wrap gap-2 py-2 sm:mt-10 justify-center sm:justify-between">
         {contacts?.inquiries?.map((item)=> (
               <ContactCard key={item.id} item={item} onDelete={()=> HandleDeleteContact(item.id)} />
         ))}

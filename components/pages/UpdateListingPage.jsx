@@ -175,7 +175,7 @@ export default function UpdateListingPage() {
               type={"text"}
             />
             <div className="mx-auto">
-              <LisitngButton onclick={HandleUpdate} />
+              <LisitngButton title={"Update"} onclick={HandleUpdate} />
             </div>
           </div>
         </div>

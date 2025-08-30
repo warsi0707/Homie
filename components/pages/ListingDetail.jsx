@@ -137,7 +137,7 @@ function ListingDetail() {
               <div className="flex gap-2 items-center">
                 <div>
                   <img
-                    src="/lucknow.png"
+                    src="/profile.png"
                     className="h-10 w-10 rounded-full"
                     alt=""
                   />

@@ -26,7 +26,6 @@ function ContactForm() {
 
     try {
       const response = await axios.post("/api/auth/contact", { name, email, phone, message, propertyId:listingId,agentId });
-      console.log(response)
       if(response.data.message){
         toast.success(response.data.message)
         router.push(`/listing/${listingId}`)

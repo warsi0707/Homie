@@ -4,7 +4,7 @@ import { CiTrash } from "react-icons/ci";
 
 function ContactCard({item, onDelete}) {
   return (
-    <div className="w-72 h-auto p-3 border border-gray-300 flex flex-col gap-3 rounded-xl shadow-xl">
+    <div className="w-72 h-56 p-3 border border-gray-300 flex flex-col gap-3 rounded-xl shadow-xl">
       <div className="flex justify-between">
         <div className="flex gap-2">
             <p className="bg-blue-700 text-white rounded-full p-2 px-3">{item.name.split(" ").map((word)=> (word.charAt(0).toUpperCase()))}</p>
@@ -23,7 +23,7 @@ function ContactCard({item, onDelete}) {
         </div>
         <div className="flex justify-between">
           <p className="text-gray-600">Listing:</p>
-          <Link className="hover:underline" href={`/listing/${item.property.id}`}>{item.property.title.split(" ")[0]}</Link>
+          <Link className="underline hover:text-blue-500" href={`/listing/${item.property.id}`}>{item.property.title.split(" ")[0]}</Link>
         </div>
         <div>
           <h1>{item.message}</h1>

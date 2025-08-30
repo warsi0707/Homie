@@ -128,7 +128,7 @@ export default function PostListing() {
             <ListingInput values={description}  handleChange={(e) => setDescription(e.target.value)}  placeholder={"Description"}  type={"text"}/>
 
           <div className="mx-auto">
-            <LisitngButton onclick={HandlePostListing} />
+            <LisitngButton title={"Post"} onclick={HandlePostListing} />
           </div>
         </div>
       </div>

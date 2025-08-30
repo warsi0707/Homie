@@ -9,7 +9,6 @@ import NavLogLink from "./NavLogLink";
 
 export default function Navbar() {
   const session = useSession();
-  console.log(session)
   return (
     <div className="border-b p-7 px-10 border-gray-300 flex justify-between items-center">
       <Link

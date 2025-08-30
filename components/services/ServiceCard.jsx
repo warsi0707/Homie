@@ -1,11 +1,17 @@
 import Link from "next/link";
+import { memo } from "react";
 import { MdArrowOutward } from "react-icons/md";
+import * as motion from "motion/react-client"
 
-function ServiceCard() {
+
+function ServiceCard({title}) {
   return (
-    <div className="border border-gray-200  rounded-md hover:shadow-xl p-5 space-y-5 hover:bg-slate-100">
+    <motion.div
+    whileHover={{opacity:1.2}}
+    transition={{duration:0.8}}
+    className="border border-gray-200  rounded-md hover:shadow-xl p-5 space-y-5 hover:bg-slate-100">
       <div className="flex justify-between">
-        <h1 className="text-2xl text-slate-500">Financing Assistance</h1>
+        <h1 className="text-2xl text-slate-500">{title}</h1>
         <Link className="text-3xl" href={"#"}><MdArrowOutward/></Link>
       </div>
       <div>
@@ -18,8 +24,8 @@ function ServiceCard() {
           Minima?
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
-export default ServiceCard;
+export default memo(ServiceCard);
