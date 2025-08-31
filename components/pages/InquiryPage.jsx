@@ -63,7 +63,7 @@ export default function InquiryPage() {
             <h1 className="text-5xl font-semibold">No contacts </h1>
         </div>
     )
-  }else{
+  }
   return (
     <div className="min-h-screen sm:w-[700px]  p-2  mx-auto sm:gap-5 sm:py-5 flex flex-wrap gap-2 py-2 sm:mt-10 justify-center sm:justify-between">
         {contacts?.inquiries?.map((item)=> (
@@ -72,4 +72,4 @@ export default function InquiryPage() {
     </div>
   );
 }
-}
+
