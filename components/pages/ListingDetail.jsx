@@ -16,8 +16,7 @@ import { useSession } from "next-auth/react";
 
 function ListingDetail() {
   const session = useSession();
-  // const { loading, setLoading } = useContext(StateContext);
-  const [loading, setLoading] = useState(false)
+  const { loading, setLoading } = useContext(StateContext);
   const [data, setData] = useState({});
   const [image, setImage] = useState([]);
   const { id } = useParams();
@@ -61,7 +60,7 @@ function ListingDetail() {
   useEffect(() => {
       GetListing();
   }, []);
-  if (loading == true) {
+  if (loading) {
     return (
       <div>
         <h1 className="text-5xl font-bold text-center min-h-screen mt-20">
