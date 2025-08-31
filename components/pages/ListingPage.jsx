@@ -20,6 +20,7 @@ export default async function ListingPage() {
       initial={{opacity:0, y:100}}
       whileInView={{opacity:1, y:0}}
       transition={{duration:0.8}}
+      viewport={{once:true}}
       className='flex flex-wrap justify-center md:justify-between gap-10 py-16'>
         {data?.map((item)=> (
           <ListingCard key={item.id} id={item.id} title={item.title} location={item.location} price={item.price} image={item.images[0]}/>

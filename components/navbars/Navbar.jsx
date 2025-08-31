@@ -13,7 +13,7 @@ import toast from "react-hot-toast";
 export default function Navbar() {
   const session = useSession();
   const [userMenu, setUserMenu] = useState(false)
-  console.log(session);
+
 
   const HandleSignOut =()=>{
     toast.success("Signout")
