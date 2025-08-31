@@ -26,9 +26,9 @@ function ListingDetail() {
   const GetListing = useCallback(async () => {
     try {
       const response = await axios.get(`/api/auth/listing/${id}`);
-      setLoading(true)
+      
       if (response.statusText === "OK") {
-        setLoading(false);
+        
         setData(response.data.listing);
         setImage(response.data.listing.images);
       }
