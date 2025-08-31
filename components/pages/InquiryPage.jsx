@@ -19,13 +19,14 @@ export default function InquiryPage() {
           agentId: agentId
         },
       });
+      console.log(response)
       setLoading(true);
-      if (response.statusText == 'OK') {
+      if (response.statusText === 'OK') {
         setLoading(false)
         setContacts(response.data);
-        setLoading(false);
       }
     } catch (error) {
+      setLoading(false)
       toast.error(error);
     }
   };
