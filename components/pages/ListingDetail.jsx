@@ -26,7 +26,6 @@ export default function ListingDetail() {
   const GetListing = useCallback(async () => {
     try {
       const response = await axios.get(`/api/auth/listing/${id}`);
-      console.log(response)
       setLoading(true)
       if (response.data.listing) {
         setLoading(false)
