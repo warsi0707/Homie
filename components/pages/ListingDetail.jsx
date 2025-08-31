@@ -16,7 +16,8 @@ import { useSession } from "next-auth/react";
 
 function ListingDetail() {
   const session = useSession();
-  const { loading, setLoading } = useContext(StateContext);
+  // const { loading, setLoading } = useContext(StateContext);
+  const [loading, setLoading] = useState(false)
   const [data, setData] = useState({});
   const [image, setImage] = useState([]);
   const { id } = useParams();
