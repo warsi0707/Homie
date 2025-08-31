@@ -28,7 +28,7 @@ export default function ListingDetail() {
       const response = await axios.get(`/api/auth/listing/${id}`);
       console.log(response)
       setLoading(true)
-      if (response.statusText === "OK") {
+      if (response.data.listing) {
         setLoading(false)
         setData(response.data.listing);
         setImage(response.data.listing.images);
