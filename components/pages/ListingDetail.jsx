@@ -33,7 +33,6 @@ function ListingDetail() {
         setImage(response.data.listing.images);
       }
     } catch (error) {
-      setLoading(false);
       toast.error(error);
     }
   }, []);
@@ -60,7 +59,7 @@ function ListingDetail() {
 
   useEffect(() => {
       GetListing();
-  }, [id]);
+  }, []);
   if (loading == true) {
     return (
       <div>
