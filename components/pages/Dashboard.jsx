@@ -7,7 +7,7 @@ import LocationPage from './LocationPage'
 
 export default function Dashboard() {
   return (
-    <div className='p-3 sm:p-10'>
+    <div className='p-3 '>
       <StarterPage1/>
       <Aboutpage/>
       <ListingPage/>
