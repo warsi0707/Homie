@@ -26,9 +26,9 @@ function ListingDetail() {
   const GetListing = useCallback(async () => {
     try {
       const response = await axios.get(`/api/auth/listing/${id}`);
-      
+      setLoading(true)
       if (response.statusText === "OK") {
-        
+        setLoading(false)
         setData(response.data.listing);
         setImage(response.data.listing.images);
       }
@@ -59,14 +59,7 @@ function ListingDetail() {
   };
 
   useEffect(() => {
-    setLoading(true);
-    if (id) {
-       setLoading(false);
       GetListing();
-    } else {
-       setLoading(false);
-      return;
-    }
   }, [id]);
   if (loading == true) {
     return (
