@@ -37,10 +37,7 @@ export default function SignUpPage() {
       toast.error(error)
     }
   }
-  const handleGoogleSignup =()=>{
-     signIn('google')
 
-  }
   return (
      <div className="min-h-screen w-full flex justify-between gap-10 p-20 ">
       <div className=" w-full flex flex-col justify-center items-center h-screen pb-10">
@@ -62,8 +59,8 @@ export default function SignUpPage() {
           </div>
           <div className='flex justify-between'>
             <SignButton onclick={HandleSignup} title={"SignUp"}/>
-            <SignButton onclick={()=> handleGoogleSignup()} title={"Google"}/>
-            <SignButton  title={"GitHub"}/>
+            <SignButton onclick={()=> signIn('google')} title={"Google"}/>
+            <SignButton onclick={()=> signIn('github')} title={"GitHub"}/>
           </div>
           <div>
             <p>Already have an account ?<Link href={"/signin"} className="underline">SignIn</Link></p>

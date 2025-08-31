@@ -46,8 +46,10 @@ export default function SigninPage() {
            <SignInput refs={passwordRef} label={"Password"} placeholder={"john@123"} type={'Password'}/>
           </div>
            
-          <div>
+          <div className="flex justify-between">
             <SignButton onclick={HandleSignin} title={"Sign In"}/>
+            <SignButton onclick={()=> signIn('google')} title={"Google"}/>
+            <SignButton onclick={()=> signIn('github')} title={"Github"}/>
           </div>
           <div>
             <p>Don't have an account ?<Link href={"/signup"} className="underline">Signup</Link></p>

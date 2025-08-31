@@ -84,7 +84,7 @@ function ListingDetail() {
         {session?.data?.user?.role === "AGENT" && (
           <div className="text-center items-center space-x-2">
             <Link
-              href={`/listing/update/${data.id}`}
+              href={`/agent/listing/${data.id}`}
               className="bg-black text-white p-2 rounded-2xl cursor-pointer hover:bg-slate-700 transition-all duration-300"
             >
               Make Changes
