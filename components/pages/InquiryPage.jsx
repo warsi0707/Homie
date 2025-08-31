@@ -21,7 +21,7 @@ export default function InquiryPage() {
       });
       console.log(response)
       setLoading(true);
-      if (response.statusText === 'OK') {
+      if (response.data) {
         setLoading(false)
         setContacts(response.data);
       }
