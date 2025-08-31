@@ -14,7 +14,7 @@ import GoogleMap from "../GoogleMap";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 
-function ListingDetail() {
+export default function ListingDetail() {
   const session = useSession();
   const { loading, setLoading } = useContext(StateContext);
   const [data, setData] = useState({});
@@ -180,6 +180,5 @@ function ListingDetail() {
   );
 }
 
-export default memo(ListingDetail);
 
 // AIzaSyAluLDtPEXOzHy2-ctlRGbHWPIp-Kmrn6g
