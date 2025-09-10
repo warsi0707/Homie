@@ -166,6 +166,7 @@ export default function ListingDetail() {
           <h1>Bookings</h1>
         </div> */}
       </div>
+    
       {/* Location */}
       {/* <div className=" w-full h-96 md:h-[500px] mb-5 space-y-2">
 

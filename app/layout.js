@@ -5,7 +5,7 @@ import FooterPage from "@/components/footer/FooterPage";
 import ToastProvider from "@/lib/ToastProvider";
 import SessionAuthProvider from "@/lib/SessionAuthProvider";
 import StateContextProvider from "@/context/StateContextProvider";
-
+import "leaflet/dist/leaflet.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

@@ -12,7 +12,7 @@ export default function Dashboard() {
       <Aboutpage/>
       <ListingPage/>
       <ServicePage/>
-        <LocationPage/>
+      <LocationPage/>
     </div>
   )
 }

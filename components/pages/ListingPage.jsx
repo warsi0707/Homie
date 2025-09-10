@@ -1,10 +1,12 @@
 import GetListing from '@/lib/GetListing'
 import ListingCard from '../listing/ListingCard'
 import * as motion from "motion/react-client";
+import axios from 'axios';
 
 
 export default async function ListingPage() {
   const data = await GetListing()
+  
   return (
     <div id='listing'>
       <div className='flex justify-between items-center text-center'>

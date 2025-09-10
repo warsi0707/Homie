@@ -63,7 +63,7 @@ function ContactForm() {
               placeholder="Your Email"
             />
           </div>
-          <div>
+          <div className="flex flex-col gap-2 md:gap-8">
             <input
             ref={phoneRef}
               type="number"

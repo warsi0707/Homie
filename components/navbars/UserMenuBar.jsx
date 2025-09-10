@@ -25,14 +25,18 @@ function UserMenuBar({handleLogout}) {
           </div>
         </div>
         <div className="space-y-2">
-            {session?.data?.user?.role === "AGENT" ?
+            {session?.data?.user?.role === "AGENT" &&
             <>
-                <MenuBarLink title={"Post Listing"} path={"/agent/listing"} icons={<RiBuilding2Line/>}/>
+                <MenuBarLink title={"Listings"} path={"/agent/listing"} icons={<RiBuilding2Line/>}/>
+                <MenuBarLink title={"Post Listing"} path={"/agent/post-listing"} icons={<RiBuilding2Line/>}/>
                 <MenuBarLink title={"Inquery"} path={"/agent/inquiry"} icons={<IoMdContacts/>}/>
-            </> :
-            <>
-                <MenuBarLink title={"Saved listing"} path={"/"} icons={<FaHeart/>}/>
-            </>
+            </> 
+            }
+            {session?.data?.user?.role === 'ADMIN' &&
+                <>
+                  <MenuBarLink title={"Dashboard"} path={"/admin"} icons={<RiBuilding2Line/>}/>
+                 
+                </>
             }
             
         </div>

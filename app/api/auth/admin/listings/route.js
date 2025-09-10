@@ -1,9 +1,10 @@
 import { prisma } from "@/lib/PrismaProvider"
 import { NextResponse } from "next/server"
 
-export default async function GET(req) {
+export  async function GET(req) {
     try{
-        const listings = await prisma.listing.findMany({})
+        const listings = await prisma.property.findMany({})
+        console.log(listings)
         if(listings.length === 0) {
             return NextResponse.json({
                 listings: [],

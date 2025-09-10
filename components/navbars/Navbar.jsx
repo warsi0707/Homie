@@ -13,6 +13,7 @@ import toast from "react-hot-toast";
 export default function Navbar() {
   const session = useSession();
   const [userMenu, setUserMenu] = useState(false)
+  console.log(session)
 
 
   const HandleSignOut =()=>{
@@ -33,12 +34,14 @@ export default function Navbar() {
         </p>
         <h1>Homie</h1>
       </Link>
-      <div className=" gap-6 text-gray-500 hidden md:flex">
+      {session?.data?.user?.role !== 'ADMIN' &&
+      <div className={`gap-6 text-gray-500 hidden md:flex }`}>
         <Link href={"#about"}> About</Link>
         <Link href={"#listing"}> Listing</Link>
         <Link href={"#service"}> Services</Link>
         <Link href={"#location"}> Location</Link>
       </div>
+      }
    
       {session?.status === "authenticated" && (
         <div className="flex justify-center items-center gap-2">
