@@ -15,6 +15,7 @@ export default  function AdminListing() {
       });
       setLoading(true)
       const result = await response.json();
+      
       if(result.listings){
         setLoading(false)
         setListing(result.listings)
@@ -37,14 +38,8 @@ export default  function AdminListing() {
   return (
     <div className='min-h-screen w-full px-2 md:px-28  flex gap-5 justify-evenly flex-wrap p-5'>
       {listing.map((item)=>(
-        <AdminListingCard key={item.id} title={item.title} location={item.location} price={item.price}/>
+        <AdminListingCard key={item.id} title={item.title} location={item.location} price={item.price} image={item.images[0]}/>
       ))}
-      
-      {/* <AdminListingCard/>
-      <AdminListingCard/>
-       <AdminListingCard/>
-      <AdminListingCard/>
-      <AdminListingCard/> */}
     </div>
   )
 }

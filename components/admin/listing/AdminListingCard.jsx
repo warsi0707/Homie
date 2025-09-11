@@ -5,7 +5,7 @@ import { LiaRupeeSignSolid } from "react-icons/lia";
 import { MdArrowOutward } from "react-icons/md";
 import * as motion from "motion/react-client";
 
-function AdminListingCard({title, location, price}) {
+function AdminListingCard({title, location, price, image}) {
   return (
     <motion.div
     // initial={{opacity:0, y:100}}
@@ -16,7 +16,7 @@ function AdminListingCard({title, location, price}) {
     //   whileTap={{scale:1.1}}
     className='h-80 w-72  relative overflow-hidden border pb-1 rounded-xl border-gray-400 shadow-2xl'>
         {/* <Link href={``}> */}
-         <img src='/delhi.png' className='h-64 w-72  rounded-t-xl object-cover transition-transform duration-500 group-hover:scale-110' alt="" />
+         <img src={image} className='h-64 w-72  rounded-t-xl object-cover transition-transform duration-500 group-hover:scale-110' alt="" />
         {/* </Link> */}
       
         <div className="flex justify-between p-3">
