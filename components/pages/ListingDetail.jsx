@@ -3,8 +3,6 @@ import { StateContext } from "@/context/StateContextProvider";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 import React, {
-  memo,
-  useCallback,
   useContext,
   useEffect,
   useState,
@@ -23,7 +21,8 @@ export default function ListingDetail() {
   const router = useRouter();
   const agentId = session?.data?.user?.id;
 
-  const GetListing = useCallback(async () => {
+
+  const GetListing = async () => {
     try {
       const response = await axios.get(`/api/auth/listing/${id}`);
       setLoading(true)
@@ -35,7 +34,7 @@ export default function ListingDetail() {
     } catch (error) {
       toast.error(error);
     }
-  }, []);
+  }
   const DeleteListing = async () => {
     const listingId = id;
 
@@ -56,6 +55,8 @@ export default function ListingDetail() {
       toast.error(error);
     }
   };
+
+    
 
   useEffect(() => {
       GetListing();
@@ -166,17 +167,9 @@ export default function ListingDetail() {
           <h1>Bookings</h1>
         </div> */}
       </div>
-    
-      {/* Location */}
-      {/* <div className=" w-full h-96 md:h-[500px] mb-5 space-y-2">
-
-        <div className="">
-          <h1 className="text-3xl font-semibold">Location</h1>
-          <p className="text-gray-500">Mumbai</p>
-        </div>
-        <div className="bg-black w-full h-52 md:h-full rounded-xl"></div>
-      </div> */}
-      <GoogleMap />
+      {data &&
+      <GoogleMap city={data.location} />
+      }
     </div>
   );
 }

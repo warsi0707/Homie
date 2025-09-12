@@ -1,0 +1,1 @@
+export const MAP_API_KEY = process.env.NEXT_PUBLIC_MAPTILER_KEY

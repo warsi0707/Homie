@@ -35,6 +35,9 @@ A full-stack web application for managing real estate listings and inquiries,bui
 ### Inquiry
 ![Inquiry](public/screenshots/inquiry.png)
 
+### Map from the listing location 
+![Map](public/screenshots/listingLocation.png)
+
 
 ---
 
