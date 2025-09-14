@@ -9,7 +9,7 @@ import Featured from './Featured'
 
 export default function Dashboard() {
   return (
-    <div className=' space-y-10'>
+    <div className='space-y-10'>
       <StarterPage1/>
       <WhatDo/>
       <Featured/>

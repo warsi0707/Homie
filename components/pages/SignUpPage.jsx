@@ -1,12 +1,11 @@
 'use client'
-import React, { useRef } from 'react'
+import React, { useCallback, useRef } from 'react'
 import Link from 'next/link'
 import toast from 'react-hot-toast'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import SignInput from '../signin/SignInput'
 import SignButton from '../signin/SignButton'
-import { signIn } from 'next-auth/react'
 
 export default function SignUpPage() {
   const emailRef = useRef("")
@@ -17,7 +16,7 @@ export default function SignUpPage() {
   const router = useRouter()
 
 
-  const HandleSignup =async(e)=> {
+  const HandleSignup =useCallback( async(e)=> {
     e.preventDefault()
     const email = emailRef.current.value;
     const name = nameRef.current.value;
@@ -36,15 +35,14 @@ export default function SignUpPage() {
     }catch(error){
       toast.error(error)
     }
-  }
+  },[])
 
   return (
-     <div className="min-h-screen w-full flex justify-between gap-10 p-20 ">
+     <div className="min-h-screen w-full flex justify-between lg:gap-10 lg:p-20 lg:pr-0">
       <div className=" w-full flex flex-col justify-center items-center h-screen pb-10">
-        <div className="w-96 space-y-10">
+        <div className=" space-y-10 w-full p-5 lg:p-0 lg:w-1/2">
           <div>
-            <h1  className="text-5xl font-semibold">Register !</h1>
-            <p className="text-slate-400">Hey, Welcome to your special place</p>
+            <h1  className="text-4xl font-semibold text-black-100">Create new account</h1>
           </div>
           <div className="flex flex-col gap-2">
             <SignInput refs={nameRef} label={"Name"} placeholder={"john"} type={'text'}/>
@@ -57,19 +55,14 @@ export default function SignUpPage() {
             <option value="AGENT">AGENT</option>
            </select>
           </div>
-          <div className='flex justify-between'>
-            <SignButton onclick={HandleSignup} title={"SignUp"}/>
-            <SignButton onclick={()=> signIn('google')} title={"Google"}/>
-            <SignButton onclick={()=> signIn('github')} title={"GitHub"}/>
-          </div>
-          <div>
-            <p>Already have an account ?<Link href={"/signin"} className="underline">SignIn</Link></p>
-         
+          <div className='mx-auto w-full gap-16 flex flex-col justify-center items-center '>
+            <SignButton title={'Create Account'} onclick={HandleSignup}/>
+              <p>Already have an account ?<Link href={"/signin"} className="text-blue-100 font-semibold">SignIn</Link></p>
           </div>
         </div>
       </div>
-      <div className="bg-green-500 w-full h-screen">
-        <img src="/login.png" className="w-full h-full" alt="" />
+      <div className=" w-full h-screen hidden md:flex">
+        <img src="/login-page.png" className="w-full h-full rounded-l-3xl" alt="" />
       </div>
     </div>
   )

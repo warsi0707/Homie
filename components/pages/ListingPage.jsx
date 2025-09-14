@@ -8,8 +8,8 @@ export default async function ListingPage() {
   const data = await GetListing()
   
   return (
-    <div id='listing'>
-      <div className='flex justify-between items-center text-center'>
+    <div id='listing '>
+      <div className='flex w-full justify-between items-center text-center p-10'>
         <div className='flex flex-col  items-start'>
             <p className='text-xl text-gray-400'>Discover</p>
             <h1 className='text-xl sm:text-4xl font-semibold'>Our Latest Listings</h1>
@@ -23,7 +23,7 @@ export default async function ListingPage() {
       whileInView={{opacity:1, y:0}}
       transition={{duration:0.8}}
       viewport={{once:true}}
-      className='flex flex-wrap justify-center md:justify-between gap-10 py-16'>
+      className='flex flex-wrap justify-center md:justify-between gap-10 p-10 py-16'>
         {data?.map((item)=> (
           <ListingCard key={item.id} id={item.id} title={item.title} location={item.location} price={item.price} image={item.images[0]}/>
         ))}

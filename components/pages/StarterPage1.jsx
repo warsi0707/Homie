@@ -2,7 +2,7 @@ import * as motion from "motion/react-client";
 
 function StarterPage1() {
   return (
-    <div className="min-h-screen w-full flex flex-col md:flex-row ">
+    <div className="min-h-screen w-full flex flex-col md:flex-row p-10">
       <motion.div
       initial={{opacity:0, y:-100}}
       whileInView={{

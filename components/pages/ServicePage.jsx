@@ -6,7 +6,7 @@ export default function ServicePage() {
   return (
     <div
       id="service"
-      className="h-full w-full flex  gap-2 flex-col md:flex-row justify-center items-center"
+      className="h-full w-full flex lg:px-10 gap-2 flex-col md:flex-row justify-center items-center"
     >
       <motion.div
         initial={{ opacity: 0, x: -100 }}
@@ -24,8 +24,8 @@ export default function ServicePage() {
         <img className="" src="/homeImage.png" alt="" />
       </motion.div>
       <motion.div
-        initial={{ opacity: 0, x: 100 }}
-        whileInView={{ opacity: 1, x: 0 }}
+        initial={{ opacity: 0, y: 100 }}
+        whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
         className=" w-full p-5 space-y-5 mt-36 md:mt-0"

@@ -1,12 +1,9 @@
 import Link from "next/link";
 import { memo } from "react";
-
- function MenuBarLink({path, icons,title}) {
+import { IoArrowForwardSharp } from "react-icons/io5";
+ function MenuBarLink({path, title,handleMenu}) {
   return (
-    <Link href={path} className="w-full p-1 flex items-center gap-1 sm:text-xl font-thin text-gray-500 hover:text-black ">
-        <p>{icons}</p>
-        <h1>{title}</h1>
-    </Link>
+     <Link href={`${path}`} onClick={handleMenu} className="flex items-center justify-between py-2 text-lg md:text-xl hover:bg-gray-100 hover:text-white px-5 rounded-sm transition-all duration-300"><p>{title}</p> <IoArrowForwardSharp/></Link>
   );
 }
 export default memo(MenuBarLink)

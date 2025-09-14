@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 
 function SignButton({title, onclick}) {
   return (
-    <button onClick={onclick} className="border border-black text-black px-8 py-2  rounded-md hover:cursor-pointer hover:bg-black hover:text-white transition-all duration-300">{title}</button>
+      <button onClick={onclick} className='bg-blue-100 w-full p-3 text-xl text-white rounded-full cursor-pointer'>{title}</button>
   )
 }
 

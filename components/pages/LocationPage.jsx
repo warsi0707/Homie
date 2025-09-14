@@ -10,7 +10,7 @@ function LocationPage() {
       transition={{ duration: 0.8 }}
       viewport={{once:true}}
       id="location"
-      className="min-h-screen my-5  w-full flex flex-col gap-5 justify-center"
+      className="min-h-screen my-5  w-full flex flex-col gap-5 justify-center px-10"
     >
       <div className="flex flex-col justify-center text-center items-center pb-10">
         <p className="text-2xl text-gray-400">Location</p>
