@@ -14,7 +14,7 @@ function LocationPage() {
     >
       <div className="flex flex-col justify-center text-center items-center pb-10">
         <p className="text-2xl text-gray-400">Location</p>
-        <h1 className="text-5xl font-semibold">
+        <h1 className="text-2xl md:text-5xl font-semibold">
           Stategically located to serve you better
         </h1>
       </div>

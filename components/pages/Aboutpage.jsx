@@ -2,7 +2,7 @@ import React from 'react'
 import { IoPeopleSharp } from "react-icons/io5";
 function Aboutpage() {
   return (
-    <div id='about' className='md:h-[500px] py-5 w-full flex flex-col md:flex-row justify-center items-center'>
+    <div id='about' className='h-[500px] py-5 w-full flex flex-col md:flex-row justify-center items-center'>
       <div className='w-[500px] flex flex-col justify-center items-center md:px-24 text-2xl'>
         <h1 className='text-6xl'><IoPeopleSharp/></h1>
         <h1 className='text-3xl font-semibold'>1.000+</h1>
