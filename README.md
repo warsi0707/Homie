@@ -18,7 +18,13 @@ A full-stack web application for managing real estate listings and inquiries,bui
 ![Homepage](public/screenshots/home.png)
 
 ### Listing page
-![Listing](public/screenshots/listing.png)
+![Listing](public/screenshots/listing1.png)
+
+### Listing Details
+![Listing](public/screenshots/listingDetails.png)
+
+### Feature
+![Listing](public/screenshots/feature.png)
 
 ### Services
 ![Services](public/screenshots/services.png)
@@ -28,6 +34,9 @@ A full-stack web application for managing real estate listings and inquiries,bui
 
 ### Signin
 ![Signin](public/screenshots/signin.png)
+
+### Signup
+![Signin](public/screenshots/signup.png)
 
 ### Listing post 
 ![Listing post](public/screenshots/postlisting.png)

@@ -62,25 +62,21 @@ export default function PostListing() {
     }
   },[])
   return (
-    <div className="min-h-screen w-full bg-black text-white border-b">
-      <div className="w-full px-5 md:w-[700px] mx-auto h-screen flex flex-col gap-20 justify-center">
+    <div className="min-h-screen w-full text-black border-b flex p-5 pr-0">
+      <div className="w-full px-20  mx-auto h-screen flex flex-col gap-20 justify-center">
         <div className="flex flex-col gap-5 items-center text-center -mt-20">
           <h1 className="text-2xl md:text-4xl font-semibold">
             POST YOUR LISTING
           </h1>
-          <p className="text-sm">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque
-            non assumenda, laborum obcaecati maiores atque officiis numquam,
-          </p>
         </div>
         <div className="flex flex-col gap-2 md:gap-3">
           <div className="flex flex-col gap-2 md:flex-row md:gap-2">
-            <ListingInput values={title}  handleChange={(e) => setTitle(e.target.value)}  placeholder={"Listing Title"}  type={"text"}/>
+            <ListingInput values={title} label={'Title'} handleChange={(e) => setTitle(e.target.value)}  placeholder={"Listing Title"}  type={"text"}/>
           </div>
           <div className="flex flex-col gap-2 md:flex-row md:gap-2">
-            <ListingInput values={location}  handleChange={(e) => setLocation(e.target.value)}  placeholder={"Location"}  type={"text"}/>
-            <ListingInput values={price}  handleChange={(e) => setPrice(e.target.value)}  placeholder={"Price"}  type={"number"}/>
-            <ListingInput values={area}  handleChange={(e) => setArea(e.target.value)}  placeholder={"Area"}  type={"number"}/>
+            <ListingInput values={location} label={'Location'} handleChange={(e) => setLocation(e.target.value)}  placeholder={"Location"}  type={"text"}/>
+            <ListingInput values={price} label={'Price'} handleChange={(e) => setPrice(e.target.value)}  placeholder={"Price"}  type={"number"}/>
+            <ListingInput values={area} label={'Area'} handleChange={(e) => setArea(e.target.value)}  placeholder={"Area"}  type={"number"}/>
           </div>
           <div className="space-y-2">
             <div className="flex gap-2 ml-5">
@@ -92,45 +88,60 @@ export default function PostListing() {
                 ))}
             </div>
             <div className="flex flex-col gap-2 md:flex-row md:gap-2">
-              <input
-                value={amenityInput}
-                onChange={(e) => setAmenityInput(e.target.value)}
-                placeholder={"Ammenties"}
-                type={"text"}
-                className="border border-gray-500 p-2 md:p-4 w-full focus:border-white rounded-full"
-              />
-              <button
-                className="bg-slate-700 px-3 rounded-full cursor-pointer"
+              <div className="w-full">
+                <label htmlFor="" className="text-lg">Ammenties</label>
+                <div className="flex gap-2">
+                  <input
+                    value={amenityInput}
+                    onChange={(e) => setAmenityInput(e.target.value)}
+                    placeholder={"Ammenties"}
+                    type={"text"}
+                    className="border border-gray-500 p-2 md:p-4 w-full focus:border-white rounded-xl"
+                  />
+                  <button
+                className="bg-blue-100 text-white px-3 rounded-full cursor-pointer"
                 onClick={addAmenity}
               >
                 Add
               </button>
+                </div>
+              </div>
+              
             </div>
           </div>
             <div>
               <div className="flex gap-2">
-                <input
-                  value={imageInput}
-                  onChange={(e) => setImageInput(e.target.value)}
-                  placeholder={"Images"}
-                  type={"text"}
-                  className="border border-gray-500 p-2 md:p-4 w-full focus:border-white rounded-full"
-                />
-
-                <button
-                  className="bg-slate-700 px-3 rounded-full cursor-pointer"
+                <div className="w-full">
+                  <label htmlFor="" className="text-lg">Images</label>
+                 <div className="flex gap-2">
+                    <input
+                    value={imageInput}
+                    onChange={(e) => setImageInput(e.target.value)}
+                    placeholder={"Images"}
+                    type={"text"}
+                    className="border border-gray-500 p-2 md:p-4 w-full focus:border-white rounded-xl"
+                  />
+                  <button
+                  className="bg-blue-100 text-white 2 px-3 rounded-full cursor-pointer"
                   onClick={addImage}
                 >
                   Add
                 </button>
+                 </div>
+                </div>
+
+                
               </div>
             </div>
-            <ListingInput values={description}  handleChange={(e) => setDescription(e.target.value)}  placeholder={"Description"}  type={"text"}/>
+            <ListingInput values={description} label={'Description'} handleChange={(e) => setDescription(e.target.value)}  placeholder={"Description"}  type={"text"}/>
 
-          <div className="mx-auto">
+          <div className="mx-auto w-52">
             <LisitngButton title={"Post"} onclick={HandlePostListing} />
           </div>
         </div>
+      </div>
+      <div className="w-full min-h-screen">
+        <img src="/login-page.png" className="w-full min-h-screen rounded-l-3xl" alt="" />
       </div>
     </div>
   );

@@ -20,6 +20,9 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Homie",
   description: "Homie applicatio",
+  icons: {
+    icon: "/favicon.ico"
+  }
 };
 
 export default function RootLayout({ children }) {

@@ -34,7 +34,7 @@ function UserMenuBar({ handleLogout, handleMenu }) {
 
         {session?.data?.user?.role === "AGENT" && (
           <>
-            <MenuBarLink title={"Listings"} path={"/agent/listing"} handleMenu={handleMenu} />
+            <MenuBarLink title={"Listings"} path={"/listing"} handleMenu={handleMenu} />
             <MenuBarLink title={"Post Listing"} path={"/agent/post-listing"} handleMenu={handleMenu}/>
             <MenuBarLink title={"Inquery"} path={"/agent/inquiry"} handleMenu={handleMenu}/>
           </>
