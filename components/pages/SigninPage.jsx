@@ -7,7 +7,6 @@ import SignInput from "../signin/SignInput";
 import SignButton from "../signin/SignButton";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
 
 
 export default function SigninPage() {
@@ -52,7 +51,6 @@ export default function SigninPage() {
           <div className="flex justify-evenly text-4xl w-full">
             <button onClick={()=> signIn('google')} className="cursor-pointer"><FcGoogle/></button>
             <button  onClick={()=> signIn('github')} className="cursor-pointer"><FaGithub/></button>
-            <button className="cursor-pointer"><FaLinkedin/></button>
           </div>
           <p className="text-center">Don't have an account ?<Link href={"/signup"} className="text-blue-100 font-bold">Signup</Link></p>
           <div>

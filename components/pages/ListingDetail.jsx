@@ -1,9 +1,8 @@
 "use client";
-import { StateContext } from "@/context/StateContextProvider";
+
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 import React, {
-  useContext,
   useEffect,
   useState,
 } from "react";
@@ -14,7 +13,7 @@ import { useSession } from "next-auth/react";
 
 export default function ListingDetail() {
   const session = useSession();
-  const { loading, setLoading } = useContext(StateContext);
+  const [ loading, setLoading ] = useState(true)
   const [data, setData] = useState({});
   const [image, setImage] = useState([]);
   const { id } = useParams();
@@ -32,6 +31,7 @@ export default function ListingDetail() {
         setImage(response.data.listing.images);
       }
     } catch (error) {
+      setLoading(false)
       toast.error(error);
     }
   }
@@ -59,6 +59,7 @@ export default function ListingDetail() {
     
 
   useEffect(() => {
+    if(!id) return;
       GetListing();
   }, []);
   if (loading) {
@@ -174,5 +175,3 @@ export default function ListingDetail() {
   );
 }
 
-
-// AIzaSyAluLDtPEXOzHy2-ctlRGbHWPIp-Kmrn6g

@@ -1,21 +1,22 @@
 import GetListing from '@/lib/GetListing'
 import ListingCard from '../listing/ListingCard'
 import * as motion from "motion/react-client";
-import axios from 'axios';
+import Link from 'next/link';
+import { MdArrowOutward } from "react-icons/md";
 
 
 export default async function ListingPage() {
   const data = await GetListing()
   
   return (
-    <div id='listing '>
+    <div id='listing'>
       <div className='flex w-full justify-between items-center text-center p-10'>
         <div className='flex flex-col  items-start'>
             <p className='text-xl text-gray-400'>Discover</p>
             <h1 className='text-xl sm:text-4xl font-semibold'>Our Latest Listings</h1>
         </div>
         <div>
-            <button className='bg-black text-white p-3 px-8 text-xl hidden sm:flex'>All</button>
+           <Link href={"/listing"} className='border-2 border-blue-100 px-2 md:p-2 md:px-8 rounded-full md:text-xl text-blue-100 text-center flex items-center gap-2 hover:bg-blue-100 hover:text-white transition-all duration-300'><p>See All Listings</p> <MdArrowOutward/></Link>
         </div>
       </div>
       <motion.div

@@ -7,6 +7,7 @@ import { signOut, useSession } from "next-auth/react";
 import UserMenuBar from "./UserMenuBar";
 import toast from "react-hot-toast";
 import { RxCross2 } from "react-icons/rx";
+import * as motion from "motion/react-client"
 
 export default function Navbar() {
   const session = useSession();
@@ -30,9 +31,16 @@ export default function Navbar() {
     window.addEventListener('scroll', HandleScroll)
     return ()=> window.removeEventListener('scroll', HandleScroll)
   },[])
+
   return (
     <>
-    <div className={`p-7 w-full lg:px-10 flex justify-between items-center z-50 shadow-md ${isScrolled == true ? " sticky top-2 bg-black/85 backdrop-blur-md text-white": "flex"}`}>
+    <motion.div
+    // initial={{opacity:0, y:-100}}
+    // whileInView={{opacity:1, y:0}}
+    // transition={{duration: 0.8}}
+    // exit={{opacity:0, y:-100}}
+    
+    className={`p-7 w-full lg:px-10 flex justify-between items-center z-50 shadow-md ${isScrolled == true ? " sticky top-2 bg-black/85 backdrop-blur-md text-white": "flex"}`}>
       <Link
         href={"/"}
         className="flex text-2xl font-semibold justify-center items-center gap-2"
@@ -51,14 +59,6 @@ export default function Navbar() {
         <Link href={"#location"}> Location</Link>
       </div>
       }
-   
-      {/* {session?.status === "authenticated" && (
-        <div className="flex justify-center items-center gap-2">
-            <button onClick={()=> setUserMenu(!userMenu)} className="cursor-pointer">
-              <img className="h-10 w-10 rounded-full" src={`${session?.data?.user?.image ? session?.data?.user?.image: "/profile.png"}`} alt="" />
-            </button>
-        </div>
-      )} */}
       <div className="flex justify-center items-center gap-5">
       {session?.status === "unauthenticated" && (
         <>
@@ -80,7 +80,7 @@ export default function Navbar() {
           </button>
 }
       </div>
-    </div>
+    </motion.div>
     {userMenu &&
     <UserMenuBar handleLogout={HandleSignOut} handleMenu={()=> setUserMenu(!userMenu)}/>
     }
