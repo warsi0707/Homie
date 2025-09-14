@@ -14,6 +14,12 @@ export default function Navbar() {
   const [userMenu, setUserMenu] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
 
+  const HandleSignOut =()=>{
+    toast.success("Signout")
+    setTimeout(() => {
+      signOut()
+    }, 1000); 
+  }
   useEffect(()=>{
     const HandleScroll =()=>{
       if(window.scrollY >1080){
@@ -27,7 +33,7 @@ export default function Navbar() {
   },[])
   return (
     <>
-    <div className={`p-7 px-10 flex justify-between items-center z-50 shadow-md ${isScrolled == true ? " sticky top-2 bg-black/85 text-white backdrop-blur-md ": "flex"}`}>
+    <div className={`p-7 px-10 flex justify-between items-center z-50 shadow-md ${isScrolled == true ? " sticky top-2 bg-black/85 backdrop-blur-md text-white": "flex"}`}>
       <Link
         href={"/"}
         className="flex text-2xl font-semibold justify-center items-center gap-2"
