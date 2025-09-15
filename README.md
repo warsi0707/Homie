@@ -41,6 +41,9 @@ A full-stack web application for managing real estate listings and inquiries,bui
 ### Listing post 
 ![Listing post](public/screenshots/postlisting.png)
 
+### Admin Dashboard
+![Admin](public/screenshots/admin.png)
+
 ### Inquiry
 ![Inquiry](public/screenshots/inquiry.png)
 

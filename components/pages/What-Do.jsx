@@ -4,9 +4,16 @@ import { CgLoadbarSound } from "react-icons/cg";
 import { GiHouseKeys } from "react-icons/gi";
 import { RiMic2AiFill } from "react-icons/ri";
 import { MdLockOutline } from "react-icons/md";
+import * as motion from 'motion/react-client'
+
 export default function WhatDo() {
   return (
-    <div id='whatwedo' className='w-full h-full overflow-hidden n lg:h-[523px]  p-10 space-y-5 '>
+    <motion.div 
+    initial={{opacity:0, y:50}}
+    whileInView={{opacity:1, y:0}}
+    transition={{duration:0.5, delay:0.3}}
+     viewport={{once:true}}
+    id='whatwedo' className='w-full h-full overflow-hidden n lg:h-[523px]  p-10 space-y-5 '>
         <div className='flex flex-col justify-center items-center'>
             <h1 className='text-blue-100 text-4xl font-bold'>What We Do?</h1>
             <p className='text-center text-xl w-[479px] text-gray-100'>Helping you find, buy, and rent the perfect property with ease.</p>
@@ -18,6 +25,6 @@ export default function WhatDo() {
             <DoCard title={'Smart AI Property Search'} text={'Get instant recommendations based on your budget & location'} icon={<MdLockOutline/>}/>
         </div>
       
-    </div>
+    </motion.div>
   )
 }

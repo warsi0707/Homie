@@ -5,7 +5,6 @@ import { useSession } from "next-auth/react";
 import * as motion from "motion/react-client";
 import { RxCross2 } from "react-icons/rx";
 import { HiOutlineHomeModern } from "react-icons/hi2";
-import Link from "next/link";
 import { IoArrowBackCircle } from "react-icons/io5";
 
 function UserMenuBar({ handleLogout, handleMenu }) {
@@ -13,7 +12,14 @@ function UserMenuBar({ handleLogout, handleMenu }) {
   const userName = session?.data?.user?.name.split('')[0].toLocaleUpperCase() + session?.data?.user?.name.slice(1)
   
   return (
-    <div className="bg-slate-100 fixed h-full z-50 top-0 p-3 md:p-10 w-full md:w-1/2 right-0 ">
+    <motion.div 
+    initial={{opacity:0, x:50}}
+    animate={{opacity:1, x:0}}
+    transition={{duration:0.5}}
+    exit={{opacity:0, x:50, transition:{duration:0.5}}}
+    
+
+    className="bg-slate-100 fixed h-full z-50 top-0 p-3 md:p-10 w-full md:w-1/2 right-0 ">
       <div className="flex justify-between border-b border-b-gray-100 p-2.5">
         <div className="flex items-center text-xl md:text-3xl text-center ">
           <p><HiOutlineHomeModern /></p>
@@ -31,6 +37,7 @@ function UserMenuBar({ handleLogout, handleMenu }) {
           </div>
         }
         <MenuBarLink title={"Home"} path={"/"} handleMenu={handleMenu}/>
+        <MenuBarLink title={"Saved Listings"} path={"/saved-listing"} handleMenu={handleMenu}/>
 
         {session?.data?.user?.role === "AGENT" && (
           <>
@@ -53,7 +60,7 @@ function UserMenuBar({ handleLogout, handleMenu }) {
           </>
         )}
       </div>
-    </div>
+    </motion.div>
     // <motion.div
     // initial={{opacity:0}}
     // animate={{opacity:1}}

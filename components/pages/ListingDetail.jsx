@@ -45,6 +45,7 @@ export default function ListingDetail() {
           data: { agentId },
         }
       );
+      console.log(response)
       if (response.data.message) {
         toast.success(response.data.message);
         router.push("/");
@@ -52,7 +53,7 @@ export default function ListingDetail() {
         toast.error(response.data.error);
       }
     } catch (error) {
-      toast.error(error);
+      toast.error(error.message);
     }
   };
 
@@ -73,13 +74,13 @@ export default function ListingDetail() {
   }
   return (
     <div className="p-8 md:p-14 md:px-32 flex flex-col gap-5 min-h-screen mb-10">
-      <div className="-mt-8 flex justify-between">
+      <div className="mt-8 flex justify-between">
         <div>
-          <h1 className="text-4xl font-semibold">{data.title}</h1>
+          <h1 className="text-xl md:text-4xl font-semibold">{data.title}</h1>
           <p className="text-gray-400">{data.location}</p>
         </div>
         {session?.data?.user?.role === "AGENT" && (
-          <div className="text-center items-center space-x-2">
+          <div className="text-center items-center flex space-x-2">
             <Link
               href={`/agent/listing/${data.id}`}
               className="bg-black text-white p-2 rounded-2xl cursor-pointer hover:bg-slate-700 transition-all duration-300"
@@ -120,7 +121,7 @@ export default function ListingDetail() {
           </div>
         </div>
       </div>
-      <div className=" w-full h-[900px]  md:h-[500px] flex flex-col  gap-2 md:grid grid-cols-5 ">
+      <div className=" w-full ]  md:h-[500px] flex flex-col  gap-2 md:grid grid-cols-5 ">
         <div className=" w-full h-full py-2 col-span-3 md:mr-10 md:pr-28 flex flex-col gap-5">
           {/* Description */}
           <div className="space-y-3 flex flex-col justify-center items-center md:items-start border-b border-gray-300 pb-5">

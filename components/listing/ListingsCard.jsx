@@ -1,17 +1,50 @@
-import React, { memo } from 'react'
+'use client'
+import { memo, useEffect, useState } from 'react'
 import { ImLocation2 } from "react-icons/im";
 import { CiBookmark } from "react-icons/ci";
 import { MdCurrencyRupee } from "react-icons/md";
 import Link from 'next/link';
+import {GetSavedListing, RemoveListing, SaveListing } from '@/lib/SavedListing';
+import { FaBookmark } from "react-icons/fa";
+import toast from 'react-hot-toast';
 
-function ListingsCard({title, location, price, id}) {
+
+function ListingsCard({title, location, price, id, image}) {
+  const [data, setData] = useState([])
+  useEffect(()=>{
+    const savedData = GetSavedListing()
+    if(savedData){
+        setData(savedData);
+    }else{
+      setData([]);
+    }
+  },[])
+  
+  const handleSaveListing=()=>{
+    const newItem = SaveListing({id, title, location, price, image});
+    toast.success("Listing saved!")
+    setData(newItem)
+    GetSavedListing()
+  }
+  const handleUnsavedListing=(id)=>{
+    const favorites = RemoveListing(id)
+    setData(favorites);
+    toast.success("Listing removed!")
+    GetSavedListing()
+  }
+  
+
   return (
     <div className='h-96 w-96 bg-slate-100 relative text-black-100'>
-      <img src="/login-page.png" className='rounded-3xl h-96 w-[500px]' alt="" />
+      <img src={image} className='rounded-3xl h-96 w-[500px]' alt="" />
       <div className='left-10 right-10 h-36 flex flex-col justify-between w-auto md:w-[300px] bg-white shadow-xl absolute -bottom-20 rounded-2xl p-3'>
         <div className='flex justify-between  text-lg'>
             <h1 className='flex items-center'><ImLocation2/> <p>{title.split(' ')[0]},{location.split(',')[0]}</p></h1>
-            <button className='cursor-pointer'><CiBookmark/></button>
+
+            {data?.find(item => item.id === id) ?
+             <button onClick={()=> handleUnsavedListing(id)} className='cursor-pointer'><FaBookmark/></button>:
+             <button onClick={handleSaveListing} className='cursor-pointer'><CiBookmark/></button>
+  }
         </div>
         <p className='text-sm'>Spacious 3BHK apartment in a prime location with modern amenities.</p>
         <div className='border-t flex justify-between pt-4 overflow-hidden'>

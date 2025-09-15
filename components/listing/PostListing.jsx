@@ -50,6 +50,7 @@ export default function PostListing() {
 
     try {
       const response = await axios.post("/api/auth/agent/listing", data);
+      console.log(response);
       if (response.data.message) {
         toast.success(response.data.message);
         router.push("/");
